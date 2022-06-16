@@ -36,5 +36,6 @@ sqlite-utils transform articles.db articles \
         --setting default_facet_size 3000 \
         --metadata metadata.json \
         --config suggest_facets:off \
-        --template-dir templates/
+        --template-dir templates/ \
+        --static static:static/
 ```

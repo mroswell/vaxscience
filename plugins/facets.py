@@ -14,13 +14,12 @@ def qs_key(value):
 def extra_template_vars(request):
     columns = [
         {'name': 'Section'},
-        {'name': 'PubType'},
-        {'name': 'PubDate', 'type': 'date'},
+        {'name': 'Subsection'},
         {'name': 'Main_Topic', 'type': 'array'},
-        {'name': 'Demographics', 'type': 'array'},
         {'name': 'MeSH', 'type': 'array'},
+        {'name': 'Demographics', 'type': 'array'},
+        {'name': 'PubType'},
         {'name': 'Author(s)', 'type': 'array'},
-        {'name': 'Affiliation', 'type': 'array'},
     ]
 
     suggested_facets = [
