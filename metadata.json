@@ -1,13 +1,3 @@
 {
-  "databases": {
-    "articles": {
-      "tables": {
-        "articles": {
-          "facets": [
-             {"array": "MeSH"},
-          ]
-        }
-      }
-    }
-  }
+  "extra_js_urls": ["/static/js/vax.js"]
 }
