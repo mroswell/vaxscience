@@ -1,8 +1,10 @@
 # vaxscience
+```
 python3 transform.py | python3 -mjson.tool >articles.transformed.json
+```
 
-
-```% python3 transform.py | jq --monochrome-output . >articles.transformed.json
+```
+% python3 transform.py | jq --monochrome-output . >articles.transformed.json
 ```
 
 ```
