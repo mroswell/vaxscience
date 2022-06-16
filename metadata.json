@@ -1,0 +1,13 @@
+{
+  "databases": {
+    "articles": {
+      "tables": {
+        "articles": {
+          "facets": [
+             {"array": "MeSH"},
+          ]
+        }
+      }
+    }
+  }
+}

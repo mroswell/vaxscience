@@ -16,7 +16,7 @@ def transform(data):
             row['Main_Topic'] = [item.replace('*', '').split('/', 1)[0] for item in mesh if '*' in item]
 
         if row["Affiliation"]:
-           row["Affiliation"] = row["Affiliation"].split("; ")
+           row["Affiliation"] = list(dict.fromkeys(row["Affiliation"].split("; ")))
         if row["Author(s)"]:
            row["Author(s)"] = row["Author(s)"].split("; ")
     # for row in d:
