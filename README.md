@@ -13,7 +13,23 @@ python3 transform.py | python3 -mjson.tool >articles.transformed.json
 ```
 
 ```
-%  sqlite-utils transform articles.db articles \
+sqlite-utils transform articles.db articles \
+    --column-order Main_Topic \
+    --column-order Title \
+    --column-order Link\(s\) \
+    --column-order Demographics \
+    --column-order Abstract \
+    --column-order MeSH \
+    --column-order Author\(s\) \
+    --column-order Affiliation \
+    --column-order PMID \
+    --column-order PMCID \
+    --column-order PubDate \
+    --column-order article_title \
+    --column-order Section \
+    --column-order Subsection
+  
+  %  sqlite-utils transform articles.db articles \
     --column-order Section \
     --column-order Subsection \
     --column-order Title \
