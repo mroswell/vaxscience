@@ -9,11 +9,11 @@ python3 transform.py | python3 -mjson.tool >articles.transformed.json
 
 ```
 % brew install sqlite-utils
-% sqlite-utils insert articles.db articles - --pk ID <articles.transformed.json
+% sqlite-utils insert research.db articles - --pk ID <articles.transformed.json
 ```
 
 ```
-sqlite-utils transform articles.db articles \
+sqlite-utils transform research.db articles \
     --column-order Main_Topic \
     --column-order Title \
     --column-order Link\(s\) \
@@ -31,11 +31,13 @@ sqlite-utils transform articles.db articles \
   
 ```
 ```
-% datasette articles.db         --setting default_page_size 3000 \
+% datasette research.db         --setting default_page_size 3000 \
         --setting max_returned_rows 3000 \
         --setting default_facet_size 3000 \
         --metadata metadata.json \
-        --config suggest_facets:off \
         --template-dir templates/ \
-        --static static:static/
+        --static static:static/ \
+        --plugins-dir plugins
+
 ```
+        --config suggest_facets:off \
