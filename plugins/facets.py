@@ -1,17 +1,10 @@
-import urllib.parse
+from urllib.parse import urljoin, parse_qs
 from datasette import hookimpl, utils
-
-
-def absolute_url(request, path):
-    return urllib.parse.urljoin(request.url, path)
-
-
-def qs_key(value):
-    return f'_facet_{value.get("type", "")}'.rstrip('_')
 
 
 @hookimpl
 def extra_template_vars(request):
+    query_string = parse_qs(request.query_string)
     columns = [
         {'name': 'Section'},
         {'name': 'Subsection'},
@@ -22,19 +15,22 @@ def extra_template_vars(request):
         {'name': 'Author(s)', 'type': 'array'},
     ]
 
-    suggested_facets = [
-        {
-            'name': column['name'],
-            'type': column.get('type', ''),
-            'toggle_url': absolute_url(
-                request,
-                utils.path_with_added_args(
-                    request,
-                    {qs_key(column): column['name']}
-                )
-            )
-        }
-        for column in columns
-    ]
+    suggested_facets = []
+    for column in columns:
+        name = column['name']
+        facet_type = column.get('type')
+        facet_key = f'_facet_{facet_type or ""}'.rstrip('_')
+
+        selected = query_string.get(facet_key, [])
+        if name in selected:
+            continue
+
+        path = utils.path_with_added_args(request, {facet_key: name})
+        url = urljoin(request.url, path)
+        suggested_facets.append({
+            'name': name,
+            'type': facet_type,
+            'toggle_url': url,
+        })
 
     return {"suggested_facets": suggested_facets}
